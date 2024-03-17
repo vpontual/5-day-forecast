@@ -3,7 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5-Day Forecastls</title>
+    <title>5-Day Weather Forecast</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      header {
+        background-color: darkslategrey;
+        color: white;
+        padding: 20px;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <header
+      class="bg-primary d-flex justify-content-center align-items-center py-3"
+    >
+      <h1 class="text-center m-0">Weather Forecast</h1>
+    </header>
+
+    <div class="container">
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Search for a City</h5>
+              <p class="card-text">
+                Enter a city name to get the weather forecast.
+              </p>
+              <input
+                type="text"
+                class="form-control"
+                id="city-input"
+                placeholder="Enter city name"
+              />
+              <button class="btn btn-primary mt-2" id="search-btn">
+                Search
+              </button>
+              <ul class="list-group mt-3" id="recent-searches"></ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" id="city-name"></h5>
+              <div id="weather-info"></div>
+              <div id="forecast"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
