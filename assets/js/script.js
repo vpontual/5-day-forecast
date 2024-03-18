@@ -19,7 +19,7 @@ function searchWeather() {
 }
 
 function fetchWeatherData(city) {
-  const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
 
   fetch(apiUrl)
     .then((response) => response.json())
@@ -43,14 +43,14 @@ function displayWeatherData(data) {
   weatherInfo.innerHTML = `
     <p>Current Weather: ${description}</p>
     <img src="http://openweathermap.org/img/w/${icon}.png" alt="${description}">
-    <p>Temperature: ${temp}&deg;C</p>
+    <p>Temperature: ${temp}&deg;F</p>
     <p>Humidity: ${humidity}%</p>
   `;
 }
 
 function displayForecast(data) {
   const forecastList = data.list.filter((item, index) => index % 8 === 0);
-  let forecastHTML = "";
+  let forecastHTML = `<div class="row row-cols-1 row-cols-md-3 g-4">`;
 
   forecastList.forEach((item) => {
     const { dt_txt, weather, main } = item;
@@ -58,17 +58,20 @@ function displayForecast(data) {
     const { temp_min, temp_max } = main;
 
     forecastHTML += `
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">${dt_txt}</h5>
-          <p class="card-text">${description}</p>
-          <img src="http://openweathermap.org/img/w/${icon}.png" alt="${description}">
-          <p>Min: ${temp_min}&deg;C | Max: ${temp_max}&deg;C</p>
+      <div class="col">
+        <div class="card h-100 forecast-card">
+          <div class="card-body">
+            <h5 class="card-title">${dt_txt}</h5>
+            <p class="card-text">${description}</p>
+            <img src="http://openweathermap.org/img/w/${icon}.png" alt="${description}">
+            <p>Min: ${temp_min}&deg;F | Max: ${temp_max}&deg;F</p>
+          </div>
         </div>
       </div>
     `;
   });
 
+  forecastHTML += `</div>`;
   forecast.innerHTML = forecastHTML;
 }
 
