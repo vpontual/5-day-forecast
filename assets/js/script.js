@@ -50,7 +50,7 @@ function displayWeatherData(data) {
 
 function displayForecast(data) {
   const forecastList = data.list.filter((item, index) => index % 8 === 0);
-  let forecastHTML = `<div class="row row-cols-1 row-cols-md-3 g-4">`;
+  let forecastHTML = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-2">`;
 
   forecastList.forEach((item) => {
     const { dt_txt, weather, main } = item;
