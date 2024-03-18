@@ -40,13 +40,21 @@ function displayWeatherData(data) {
   const { temp, humidity } = main;
   const { speed } = wind;
 
-  cityName.textContent = name;
-  weatherInfo.innerHTML = `
-    <img src="http://openweathermap.org/img/w/${icon}.png" alt="${description}">
-    <p>Temperature: ${temp}&deg;F</p>
-    <p>Wind: ${speed}MPH</p>
-    <p>Humidity: ${humidity}%</p>
-  `;
+  if (data.list.length > 0) {
+    // Check if there's weather data
+    cityName.textContent = name;
+    weatherInfo.classList.add("weather-data"); // Add class if data exists
+    weatherInfo.innerHTML = `
+      <img src="http://openweathermap.org/img/w/${icon}.png" alt="${description}">
+      <p>Temperature: ${temp}&deg;F</p>
+      <p>Wind: ${speed}MPH</p>
+      <p>Humidity: ${humidity}%</p>
+    `;
+  } else {
+    cityName.textContent = ""; // Clear city name if no data
+    weatherInfo.classList.remove("weather-data"); // Remove class if no data
+    weatherInfo.innerHTML = ""; // Clear content if no data
+  }
 }
 
 function displayForecast(data) {
