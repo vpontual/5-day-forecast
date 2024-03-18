@@ -35,16 +35,16 @@ function fetchWeatherData(city) {
 }
 
 function displayWeatherData(data) {
-  const { name, weather, main } = data.list[0];
+  const { name, weather, main, wind } = data.list[0];
   const { description, icon } = weather[0];
-  const { temp, humidity, wind } = main;
+  const { temp, humidity } = main;
+  const { speed } = wind;
 
   cityName.textContent = name;
   weatherInfo.innerHTML = `
-    <p>Current Weather: ${description}</p>
     <img src="http://openweathermap.org/img/w/${icon}.png" alt="${description}">
     <p>Temperature: ${temp}&deg;F</p>
-    <p>Wind: ${wind}MPH</p>
+    <p>Wind: ${speed}MPH</p>
     <p>Humidity: ${humidity}%</p>
   `;
 }
@@ -54,9 +54,10 @@ function displayForecast(data) {
   let forecastHTML = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-2">`;
 
   forecastList.forEach((item) => {
-    const { dt, weather, main } = item;
+    const { dt, weather, main, wind } = item;
     const { description, icon } = weather[0];
-    const { temp_min, temp_max, humidity, wind } = main;
+    const { temp_min, temp_max, humidity } = main;
+    const { speed } = wind;
 
     const date = new Date(dt * 1000);
 
@@ -70,9 +71,10 @@ function displayForecast(data) {
       <div class="col">
       <div class="card h-100 forecast-card">
         <div class="card-body">
-          <h5 class="card-title">${formattedDate}</h5>  <p class="card-text">${description}</p>
+          <h5 class="card-title">${formattedDate}</h5>  
           <img src="http://openweathermap.org/img/w/${icon}.png" alt="${description}">
           <p>High: ${temp_max}&deg;F<br>Low: ${temp_min}&deg;F</p>
+          <p>Wind: ${humidity}MPH</p>
           <p>Humidity: ${humidity}%</p>
         </div>
       </div>

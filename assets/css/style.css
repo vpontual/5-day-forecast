@@ -1,3 +1,12 @@
+#header {
+  background-image: linear-gradient(
+    to right,
+    rgb(0, 136, 181),
+    rgb(81, 0, 157)
+  );
+  color: white;
+}
+
 .forecast-card {
   height: 100%;
   background-color: #333; /* Charcoal color */
