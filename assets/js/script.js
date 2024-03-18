@@ -1,4 +1,4 @@
-const apiKey = "Ya5cf1c39c17df762a24e6365caa32a85";
+const apiKey = "a5cf1c39c17df762a24e6365caa32a85";
 const recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
 
 const cityInput = document.getElementById("city-input");
