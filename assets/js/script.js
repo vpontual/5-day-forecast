@@ -51,38 +51,46 @@ function displayWeatherData(data) {
 
 function displayForecast(data) {
   const forecastList = data.list.filter((item, index) => index % 8 === 0);
-  let forecastHTML = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-2">`;
+  let forecastHTML = "";
 
-  forecastList.forEach((item) => {
-    const { dt, weather, main, wind } = item;
-    const { description, icon } = weather[0];
-    const { temp_min, temp_max, humidity } = main;
-    const { speed } = wind;
+  if (forecastList.length > 0) {
+    forecastHTML += `<div class="row pl-3">  <h4>5 Day Forecast:</h4>
+    </div>`;
 
-    const date = new Date(dt * 1000);
+    forecastHTML += `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-2">`; // Grid for cards
 
-    const formattedDate = new Intl.DateTimeFormat("en-US", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    }).format(date);
+    forecastList.forEach((item) => {
+      const { dt, weather, main, wind } = item;
+      const { description, icon } = weather[0];
+      const { temp_min, temp_max, humidity } = main;
+      const { speed } = wind;
 
-    forecastHTML += `
-      <div class="col">
-      <div class="card h-100 forecast-card">
-        <div class="card-body">
-          <h5 class="card-title">${formattedDate}</h5>  
-          <img src="http://openweathermap.org/img/w/${icon}.png" alt="${description}">
-          <p>High: ${temp_max}&deg;F<br>Low: ${temp_min}&deg;F</p>
-          <p>Wind: ${humidity}MPH</p>
-          <p>Humidity: ${humidity}%</p>
+      const date = new Date(dt * 1000);
+
+      const formattedDate = new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }).format(date);
+
+      forecastHTML += `
+        <div class="col">
+          <div class="card h-100 forecast-card">
+            <div class="card-body">
+              <h5 class="card-title">${formattedDate}</h5>  
+              <img src="http://openweathermap.org/img/w/${icon}.png" alt="${description}">
+              <p>High: ${temp_max}&deg;F<br>Low: ${temp_min}&deg;F</p>
+              <p>Wind: ${humidity}MPH</p>
+              <p>Humidity: ${humidity}%</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    `;
-  });
+      `;
+    });
 
-  forecastHTML += `</div>`;
+    forecastHTML += `</div>`;
+  }
+
   forecast.innerHTML = forecastHTML;
 }
 

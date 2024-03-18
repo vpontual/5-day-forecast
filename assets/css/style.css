@@ -12,3 +12,21 @@
   background-color: #333; /* Charcoal color */
   color: white;
 }
+
+#recent-searches li {
+  background-image: linear-gradient(
+    to right,
+    rgb(0, 136, 181),
+    rgb(81, 0, 157)
+  );
+  color: white;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+#weather-info {
+  border: 2px solid;
+  padding: 12px;
+  margin-bottom: 15px;
+}
