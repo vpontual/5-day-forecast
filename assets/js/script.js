@@ -53,21 +53,28 @@ function displayForecast(data) {
   let forecastHTML = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-2">`;
 
   forecastList.forEach((item) => {
-    const { dt_txt, weather, main } = item;
+    const { dt, weather, main } = item;
     const { description, icon } = weather[0];
     const { temp_min, temp_max } = main;
 
+    const date = new Date(dt * 1000);
+
+    const formattedDate = new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(date);
+
     forecastHTML += `
       <div class="col">
-        <div class="card h-100 forecast-card">
-          <div class="card-body">
-            <h5 class="card-title">${dt_txt}</h5>
-            <p class="card-text">${description}</p>
-            <img src="http://openweathermap.org/img/w/${icon}.png" alt="${description}">
-            <p>Min: ${temp_min}&deg;F | Max: ${temp_max}&deg;F</p>
-          </div>
+      <div class="card h-100 forecast-card">
+        <div class="card-body">
+          <h5 class="card-title">${formattedDate}</h5>  <p class="card-text">${description}</p>
+          <img src="http://openweathermap.org/img/w/${icon}.png" alt="${description}">
+          <p>Min: ${temp_min}&deg;F | Max: ${temp_max}&deg;F</p>
         </div>
       </div>
+    </div>
     `;
   });
 
