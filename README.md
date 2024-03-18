@@ -34,7 +34,7 @@ Homepage:
 ![Screenshot of the Home Page](./assets/images/ss_mainpage.png)
 
 With Search Results:
-[Screenshot of the Home Page with Search Results](./assets/images/ss_with_results.png)
+![Screenshot of the Home Page with Search Results](./assets/images/ss_with_results.png)
 
 ## Live Website
 
