@@ -37,13 +37,14 @@ function fetchWeatherData(city) {
 function displayWeatherData(data) {
   const { name, weather, main } = data.list[0];
   const { description, icon } = weather[0];
-  const { temp, humidity } = main;
+  const { temp, humidity, wind } = main;
 
   cityName.textContent = name;
   weatherInfo.innerHTML = `
     <p>Current Weather: ${description}</p>
     <img src="http://openweathermap.org/img/w/${icon}.png" alt="${description}">
     <p>Temperature: ${temp}&deg;F</p>
+    <p>Wind: ${wind}MPH</p>
     <p>Humidity: ${humidity}%</p>
   `;
 }
@@ -55,7 +56,7 @@ function displayForecast(data) {
   forecastList.forEach((item) => {
     const { dt, weather, main } = item;
     const { description, icon } = weather[0];
-    const { temp_min, temp_max } = main;
+    const { temp_min, temp_max, humidity, wind } = main;
 
     const date = new Date(dt * 1000);
 
@@ -71,7 +72,8 @@ function displayForecast(data) {
         <div class="card-body">
           <h5 class="card-title">${formattedDate}</h5>  <p class="card-text">${description}</p>
           <img src="http://openweathermap.org/img/w/${icon}.png" alt="${description}">
-          <p>Min: ${temp_min}&deg;F | Max: ${temp_max}&deg;F</p>
+          <p>High: ${temp_max}&deg;F<br>Low: ${temp_min}&deg;F</p>
+          <p>Humidity: ${humidity}%</p>
         </div>
       </div>
     </div>
